@@ -1,5 +1,7 @@
 (function() {
 
+    var comicsData;
+
     var app = angular.module("mrrrApp", ["ngRoute"]);
 
     app.config(['$routeProvider', function($routeProvider) {
@@ -57,7 +59,7 @@
                 }
 
                 month.dates.push({
-                    id: comic.id,
+                    id: i + 1,
                     date: monthAndDay,
                     title: comic.title 
                 });
@@ -66,19 +68,20 @@
             return archivesData;
         }
 
-        function updateScope(data) {
+        function updateScope() {
             var comicID = $routeParams.comicID;
-            $scope.comics = data;
+            $scope.comics = comicsData;
             if (!!comicID) {
                 $scope.comicID = parseInt(comicID);
-                $scope.comic = data[$scope.comicID - 1];
+                $scope.comic = comicsData[$scope.comicID - 1];
             }
-            $scope.archivesData = createArchivesData(data);
+            $scope.archivesData = createArchivesData(comicsData);
         }
 
-        if (!$scope.comics) {
+        if (!comicsData) {
             $http.get("/json/comics.json").then(function(response) {
-                updateScope(response.data);
+                comicsData = response.data;
+                updateScope();
             });
         } else {
             updateScope();
