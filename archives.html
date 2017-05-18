@@ -1,0 +1,21 @@
+<div class="archives-content">
+    <div class="root-node">Archives Backup System</div>
+    <div ng-repeat="year in archivesData" ng-init="isLastYear = $last">
+        <div class="year-node{{ isLastYear ? ' year-last' : '' }}">{{ year.yearNum }}</div>
+        <div ng-repeat="month in year.months track by $index" ng-if="!!month" ng-init="isLastMonth = $last">
+            <div class=
+                "month-node{{ isLastMonth ? ' month-last' : '' }}
+                    {{ isLastYear ? ' year-last' : '' }}">
+                {{ month.monthName }}
+            </div>
+            <div ng-repeat="date in month.dates" ng-init="isLastDate = $last">
+                <div class=
+                    "date-node{{ isLastDate ? ' date-last' : '' }}
+                        {{ isLastMonth ? ' month-last' : '' }}
+                        {{ isLastYear ? ' year-last' : '' }}">
+                    <a href="#!/comics/{{ date.id }}">{{ date.date }}: <span class="title">{{ date.title }}</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "name": "mrrr",
+  "description": "The Mrrr web comic application",
+  "main": "gulpfile.js",
+  "authors": [
+    "Matthew Colon"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Mrrr",
+    "web",
+    "comic"
+  ],
+  "homepage": "http://www.mrrr.net",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4"
+  }
+}

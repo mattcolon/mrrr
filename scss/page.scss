@@ -1,0 +1,86 @@
+$bar-left-width: 33px;
+$bar-right-width: 33px;
+
+body {
+    background-image: url("/images/background.jpg");
+    margin: 0px;
+}
+
+.desktop {
+
+    padding: $desktop-padding;
+    display: flex;
+    justify-content: space-between;
+
+    .icons {
+
+        width: 88px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 15px;
+
+        .icon {
+            margin-bottom: 30px;
+        }
+    }
+
+    .window {
+
+        display: inline-block;
+
+        .bar {
+
+            font-size: 0;
+
+            .left {
+                display: inline-block;
+                width: $bar-left-width;
+                height: 34px;
+                background-image: url("../images/window_bar_left.gif");
+            }
+
+            .middle {
+                display: inline-block;
+                width: calc(100% - #{$bar-left-width} - #{$bar-right-width});
+                height: 34px;
+                background: url("../images/window_bar_middle.jpg") repeat-x;
+            }
+
+            .right {
+                display: inline-block;
+                width: $bar-right-width;
+                height: 34px;
+                background-image: url("../images/window_bar_right.gif");
+            }
+        }
+
+        .center {
+
+            background:
+                url("../images/window_border_corner_left.jpg") no-repeat left bottom,
+                url("../images/window_border_corner_right.jpg") no-repeat right bottom,
+                url("../images/window_border_vertical.jpg") repeat-y left center,
+                url("../images/window_border_vertical.jpg") repeat-y right center,
+                url("../images/window_border_horizontal.jpg") repeat-x center bottom;
+            background-color: white;
+            padding: 0 $window-border-dimension $window-border-dimension $window-border-dimension;
+
+            .loading {
+                background: url("../images/loading.gif") no-repeat center;
+                padding: 25px;
+            }
+        }
+    }
+}
+
+.start-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $bar-height;
+    background: url("../images/start_bar_button.jpg") no-repeat left,
+                url("../images/start_bar_right.jpg") no-repeat right,
+                url("../images/start_bar_middle.jpg") repeat-x center;
+}

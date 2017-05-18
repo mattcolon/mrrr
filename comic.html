@@ -1,0 +1,14 @@
+<div id="test" class="comic-content">
+    <div class="title">
+        <h1>{{ comic.title }}</h1>
+    </div>
+    <div class="comic">
+        <img src="/images/comics/{{ comic.image }}" />
+    </div>
+    <div class="navigation">
+        <span class="control"><a href="#!/comics/1"><img src="images/nav_first.jpg"></a></span>
+        <span class="control"><a href="#!/comics/{{ comicID === 1 ? 1 : comicID - 1 }}"><img src="images/nav_previous.jpg"></a></span>
+        <span class="control"><a href="#!/comics/{{ comicID === comics.length ? comics.length : comicID + 1 }}"><img src="images/nav_next.jpg"></a></span>
+        <span class="control"><a href="#!/comics/{{ comics.length }}"><img src="images/nav_last.jpg"></a></span>
+    </div>
+</div>

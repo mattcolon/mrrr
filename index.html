@@ -1,0 +1,29 @@
+<html ng-app="mrrrApp">
+    <head>
+        <link rel="stylesheet" href="css/mrrr.css" />
+    </head>
+    <body>
+        <div class="desktop">
+            <span class="icons">
+                <span class="icon"><a href="/"><img src="images/icon_home.gif"></a></span>
+                <span class="icon"><a href="/#!/archives"><img src="images/icon_archives.gif"></a></span>
+                <span class="icon"><a ng-controller="ComicsController" href="/#!/comics/{{ comics.length }}"><img src="images/icon_latest_comic.gif"></a></span>
+            </span>
+            <span class="window">
+                <div class="bar">
+                    <span class="left">&nbsp;</span>
+                    <span class="middle">&nbsp;</span>
+                    <span class="right">&nbsp;</span>
+                </div>
+                <div class="center">
+                    <div ng-view><div class="loading">&nbsp;</div></div>
+                </div>
+            </span>
+        </div>
+        <div class="start-bar">&nbsp;</div>
+        <script src="lib/jquery.js"></script>
+        <script src="lib/angular.js"></script>
+        <script src="lib/angular-route.js"></script>
+        <script src="js/mrrr.min.js"></script>
+    </body>
+</html>
