@@ -9,8 +9,8 @@ $connector-corner-icon: url("../images/archives_tree_corner.gif") no-repeat;
 
 .archives-content {
 
-    font-size: 13px;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: $default-font-family;
+    font-size: $default-font-size;
     font-weight: bold;
     height: calc(100% - (#{$bar-height} * 2) - (#{$desktop-padding} * 2) - #{$window-border-dimension} - (#{$archives-content-padding} * 2));
     overflow-y: auto;

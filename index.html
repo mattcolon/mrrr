@@ -5,9 +5,18 @@
     <body>
         <div class="desktop">
             <span class="icons">
-                <span class="icon"><a href="/"><img src="images/icon_home.gif"></a></span>
-                <span class="icon"><a href="/#!/archives"><img src="images/icon_archives.gif"></a></span>
-                <span class="icon"><a ng-controller="ComicsController" href="/#!/comics/{{ comics.length }}"><img src="images/icon_latest_comic.gif"></a></span>
+                <span class="icon">
+                    <div><a href="/"><img src="images/icon_home.gif"></a></div>
+                    <div>Mrrr.net</div>
+                </span>
+                <span class="icon">
+                    <div><a href="/#!/archives"><img src="images/icon_archives.gif"></a></div>
+                    <div>Archives</div>
+                </span>
+                <span class="icon">
+                    <div><a ng-controller="ComicsController" href="/#!/comics/{{ comics.length }}"><img src="images/icon_latest_comic.gif"></a></div>
+                    <div>Latest Comic</div>
+                </span>
             </span>
             <span class="window">
                 <div class="bar">
