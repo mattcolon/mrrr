@@ -1,3 +1,8 @@
+/*
+ * Mrrr Web Comic Application
+ * @author Matthew Colón
+ */ 
+
 // Extended from https://travismaynard.com/writing/getting-started-with-gulp
 
 // Plugins

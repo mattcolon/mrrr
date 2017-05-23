@@ -1,3 +1,8 @@
+/*
+ * Mrrr Web Comic Application
+ * @author Matthew Colón
+ */ 
+
 $archives-content-padding: 15px;
 $icon-dimension: 18px;
 $root-icon: url("../images/archives_tree_root.gif") no-repeat;
@@ -12,7 +17,8 @@ $connector-corner-icon: url("../images/archives_tree_corner.gif") no-repeat;
     font-family: $default-font-family;
     font-size: $default-font-size;
     font-weight: bold;
-    height: calc(100% - (#{$bar-height} * 2) - (#{$desktop-padding} * 2) - #{$window-border-dimension} - (#{$archives-content-padding} * 2));
+    /* Use "100vh" instead of "100%" since Firefox doesn't honor "100%" in calc */
+    height: calc(100vh - (#{$bar-height} * 2) - (#{$desktop-padding} * 2) - #{$window-border-dimension} - (#{$archives-content-padding} * 2));
     overflow-y: auto;
     padding: $archives-content-padding;
 

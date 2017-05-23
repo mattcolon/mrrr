@@ -3,7 +3,7 @@
   "description": "The Mrrr web comic application",
   "main": "gulpfile.js",
   "authors": [
-    "Matthew Colon"
+    "Matthew Colón"
   ],
   "license": "ISC",
   "keywords": [
@@ -21,7 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.2.1",
     "angular": "^1.6.4",
     "angular-route": "^1.6.4"
   }

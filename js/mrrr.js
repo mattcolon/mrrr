@@ -1,9 +1,14 @@
+/*
+ * Mrrr Web Comic Application
+ * @author Matthew Colón
+ */ 
+
 (function() {
 
-    var comicsData;
-
+    // Creates the "mrrrApp" Angular module
     var app = angular.module("mrrrApp", ["ngRoute"]);
 
+    // Routes to the appropriate pages based on the URL
     app.config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when("/", {
@@ -22,69 +27,99 @@
             });
     }]);
 
-    angular.module('mrrrApp')
-        .controller('ComicsController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+    (function() {
 
-        function createArchivesData(comics) {
+        var comicsData, // The data that contains all of the comics' information
+            archivesData, // Contains the comics data structured for the archives page
+            initialYearNum = 2002; // The first year of comic data
 
-            var archivesData = [];
+        // Creates the controller for interacting with the comics data
+        app.controller('ComicsController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 
-            for (var i = 0, comicsLength = comics.length; i < comicsLength; i++) {
-                
-                var comic = comics[i];
-                
-                var monthNum = comic.image.substring(0, 2);
-                var dayNum = comic.image.substring(2, 4);
-                var yearNum = comic.image.substring(4, 8);
-                var date = new Date(yearNum, monthNum - 1, dayNum);
-                var monthName = date.toLocaleString("en-us", { month: "long" });
-                var monthAndDay = parseInt(monthNum) + "/" + parseInt(dayNum);
+            // Organizes the comics data into a structure to be used on the archives page:
+            // archivesData = [{
+            //    yearNum: 2002,
+            //    months: [{
+            //        monthName: "January",
+            //        dates: [{
+            //            id: 1,
+            //            date: "1/15",
+            //            title: "Example Comic 1"
+            //        }, {
+            //            ...
+            //        }]
+            //    }, {
+            //        ...
+            //    }]
+            //}, {
+            //    ...
+            //}];
+            function createArchivesData(comics) {
 
-                var year = archivesData[yearNum % 2002];
-                if (!year) {
-                    year = {
-                        yearNum: yearNum,
-                        months: []
-                    };
-                    archivesData[yearNum % 2002] = year;
+                var archivesData = [];
+
+                // Integrate each comic's data into the structure needed for the archives page
+                for (var i = 0, comicsLength = comics.length; i < comicsLength; i++) {
+                    
+                    // Derive the date information from the comic image's file name
+                    var comic = comics[i],
+                        comicDateString = comic.image.split('.')[0], // The file name is YYYY-MM-DD.jpg
+                        comicDate = new Date(comicDateString),
+                        monthNum = comicDate.getMonth(),
+                        monthName = comicDate.toLocaleString("en-us", { month: "long" }), // e.g. "January"
+                        yearNum = comicDate.getFullYear(),
+                        monthAndDay = (monthNum + 1) + "/" + comicDate.getDate(); // e.g. "4/10"
+
+                    // Mod the year number by the initial year number to access the appropriate index
+                    var year = archivesData[yearNum % initialYearNum];
+                    if (!year) {
+                        year = {
+                            yearNum: yearNum,
+                            months: []
+                        };
+                        archivesData[yearNum % initialYearNum] = year;
+                    }
+                    
+                    var month = year.months[monthNum];
+                    if (!month) {
+                        month = {
+                            monthName: monthName,
+                            dates: []
+                        };
+                        year.months[monthNum] = month;
+                    }
+
+                    month.dates.push({
+                        id: i + 1,
+                        date: monthAndDay,
+                        title: comic.title 
+                    });
                 }
-                
-                var month = year.months[monthNum - 1];
-                if (!month) {
-                    month = {
-                        monthName: monthName,
-                        dates: []
-                    };
-                    year.months[monthNum - 1] = month;
-                }
 
-                month.dates.push({
-                    id: i + 1,
-                    date: monthAndDay,
-                    title: comic.title 
+                return archivesData;
+            }
+
+            // Updates the scope using the cached comics data and archives data
+            function updateScope() {
+                var comicID = $routeParams.comicID;
+                $scope.comics = comicsData;
+                if (!!comicID) {
+                    $scope.comicID = parseInt(comicID);
+                    $scope.comic = comicsData[$scope.comicID - 1];
+                }
+                $scope.archivesData = archivesData;
+            }
+
+            if (!comicsData) {
+                // Fetch the comics data from the json file, then cache it and the archives data derived from it
+                $http.get("/json/comics.json").then(function(response) {
+                    comicsData = response.data;
+                    archivesData = createArchivesData(comicsData);
+                    updateScope();
                 });
-            }
-
-            return archivesData;
-        }
-
-        function updateScope() {
-            var comicID = $routeParams.comicID;
-            $scope.comics = comicsData;
-            if (!!comicID) {
-                $scope.comicID = parseInt(comicID);
-                $scope.comic = comicsData[$scope.comicID - 1];
-            }
-            $scope.archivesData = createArchivesData(comicsData);
-        }
-
-        if (!comicsData) {
-            $http.get("/json/comics.json").then(function(response) {
-                comicsData = response.data;
+            } else {
                 updateScope();
-            });
-        } else {
-            updateScope();
-        }
-    }]);
+            }
+        }]);
+    })();
 })();

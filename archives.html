@@ -1,4 +1,8 @@
+<!-- Mrrr Web Comic Application - Matthew Colón -->
 <div class="archives-content">
+    <!-- Create a tree-like structure of years containing months containing dates.  When encountering
+         the last year, month, and/or date, take this into account when assigning CSS classes so that
+         the visuals are displayed appropriately. -->
     <div class="root-node">Archives Backup System</div>
     <div ng-repeat="year in archivesData" ng-init="isLastYear = $last">
         <div class="year-node{{ isLastYear ? ' year-last' : '' }}">{{ year.yearNum }}</div>
