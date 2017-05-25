@@ -7,9 +7,29 @@
         <img src="/images/comics/{{ comic.image }}" />
     </div>
     <div class="navigation">
-        <span class="control"><a href="#!/comics/1"><img src="images/nav_first.jpg"></a></span>
-        <span class="control"><a href="#!/comics/{{ comicID === 1 ? 1 : comicID - 1 }}"><img src="images/nav_previous.jpg"></a></span>
-        <span class="control"><a href="#!/comics/{{ comicID === comics.length ? comics.length : comicID + 1 }}"><img src="images/nav_next.jpg"></a></span>
-        <span class="control"><a href="#!/comics/{{ comics.length }}"><img src="images/nav_last.jpg"></a></span>
+        <span class="control{{ comicID === 1 ? ' hidden' : '' }}">
+            <span class="tooltiptext">First Comic</span>
+            <a href="#!/comics/1">
+                <img src="images/nav_first.jpg">
+            </a>
+        </span>
+        <span class="control{{ comicID === 1 ? ' hidden' : '' }}">
+            <span class="tooltiptext">Previous Comic</span>
+            <a href="#!/comics/{{ comicID === 1 ? 1 : comicID - 1 }}">
+            <img src="images/nav_previous.jpg">
+            </a>
+        </span>
+        <span class="control{{ comicID === comics.length ? ' hidden' : '' }}">
+            <span class="tooltiptext">Next Comic</span>
+            <a href="#!/comics/{{ comicID === comics.length ? comics.length : comicID + 1 }}">
+                <img src="images/nav_next.jpg">
+            </a>
+        </span>
+        <span class="control{{ comicID === comics.length ? ' hidden' : '' }}">
+            <span class="tooltiptext">Last Comic</span>
+            <a href="#!/comics/{{ comics.length }}">
+                <img src="images/nav_last.jpg">
+            </a>
+        </span>
     </div>
 </div>

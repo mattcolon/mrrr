@@ -7,6 +7,8 @@ $comic-content-padding-bottom: 15px;
 
 .comic-content {
 
+    font-family: $default-font-family;
+    font-size: $default-font-size;
     /* Use "100vh" instead of "100%" since Firefox doesn't honor "100%" in calc */
     height: calc(100vh - (#{$bar-height} * 2) - (#{$desktop-padding} * 2) - #{$window-border-dimension} - (#{$comic-content-padding-bottom}));
     overflow-y: auto;
@@ -19,14 +21,50 @@ $comic-content-padding-bottom: 15px;
         padding-top: 15px;
 
         .control {
+
             padding-left: 15px;
             padding-right: 15px;
+            position: relative;
+
+            &.hidden {
+                visibility: hidden;
+            }
+
+            .tooltiptext {
+
+                font-weight: bold;
+                visibility: hidden;
+                width: 120px;
+                background-color: #666666;
+                color: #fff;
+                text-align: center;
+                padding: 5px 0;
+                border-radius: 6px;
+                position: absolute;
+                z-index: 1;
+                bottom: 150%;
+                left: 50%;
+                margin-left: -60px;
+
+                &::after {
+                    content: " ";
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -6px;
+                    border-width: 6px;
+                    border-style: solid;
+                    border-color: #666666 transparent transparent transparent;
+                }
+            }
+
+            &:hover .tooltiptext {
+                visibility: visible;
+            }
         }
     }
 
     .title {
-        font-family: $default-font-family;
-        font-size: $default-font-size;
         font-weight: bold;
         font-style: italic;
         text-align: center;
