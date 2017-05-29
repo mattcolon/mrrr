@@ -7,6 +7,8 @@
 
 // Plugins
 var gulp = require('gulp');
+var argv = require('yargs').argv;
+var gulpif = require('gulp-if');
 var del = require('del');
 var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
@@ -81,11 +83,10 @@ gulp.task('css-watch', function() {
 // Concatenate & Minify JavaScript
 function scripts() {
     return gulp.src('js/*.js')
-        .pipe(sourcemaps.init())
+        .pipe(gulpif(!argv.production, sourcemaps.init()))
         .pipe(concat('mrrr.js'))
-        .pipe(rename('mrrr.min.js'))
         .pipe(uglify())
-        .pipe(sourcemaps.write())
+        .pipe(gulpif(!argv.production, sourcemaps.write()))
         .pipe(gulp.dest('dist/js'));
 };
 gulp.task('scripts', ['clean'], scripts);
