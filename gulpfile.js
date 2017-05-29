@@ -16,6 +16,7 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var mainBowerFiles = require('main-bower-files');
 var browserSync = require('browser-sync');
+var sourcemaps = require('gulp-sourcemaps');
 
 // Clean the Distribution Folder
 gulp.task('clean', function() {
@@ -80,9 +81,11 @@ gulp.task('css-watch', function() {
 // Concatenate & Minify JavaScript
 function scripts() {
     return gulp.src('js/*.js')
+        .pipe(sourcemaps.init())
         .pipe(concat('mrrr.js'))
         .pipe(rename('mrrr.min.js'))
         .pipe(uglify())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/js'));
 };
 gulp.task('scripts', ['clean'], scripts);
