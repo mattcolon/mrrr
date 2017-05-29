@@ -46,7 +46,7 @@ function html() {
         .pipe(gulp.dest('dist'));
 }
 gulp.task('html', ['clean'], html);
-gulp.task('html-watch', html);
+gulp.task('html-watch', reloadBrowserWhenComplete(html));
 
 // Copy Images
 function images() {
@@ -54,7 +54,7 @@ function images() {
         .pipe(gulp.dest('dist/images'));
 }
 gulp.task('images', ['clean'], images);
-gulp.task('images-watch', images);
+gulp.task('images-watch', reloadBrowserWhenComplete(images));
 
 // Copy JSON
 function json() {
@@ -62,18 +62,20 @@ function json() {
         .pipe(gulp.dest('dist/json'));
 };
 gulp.task('json', ['clean'], json);
-gulp.task('json-watch', json);
+gulp.task('json-watch', reloadBrowserWhenComplete(json));
 
 // Compile Sass
 function css() {
-    return gulp.src('scss/mrrr.scss')
+    return gulp.src('scss/*.scss')
         .pipe(sass())
         .pipe(concat('mrrr.css'))
         .pipe(autoprefixer('last 2 versions'))
         .pipe(gulp.dest('dist/css'));
 };
 gulp.task('css', ['clean'], css);
-gulp.task('css-watch', css);
+gulp.task('css-watch', function() {
+    css().pipe(browserSync.stream());
+});
 
 // Concatenate & Minify JavaScript
 function scripts() {
@@ -84,7 +86,15 @@ function scripts() {
         .pipe(gulp.dest('dist/js'));
 };
 gulp.task('scripts', ['clean'], scripts);
-gulp.task('scripts-watch', scripts);
+gulp.task('scripts-watch', reloadBrowserWhenComplete(scripts));
+
+function reloadBrowserWhenComplete(taskFunction) {
+    return function() {
+        taskFunction().on('end', function() {
+            browserSync.reload();
+        });
+    };
+}
 
 // Watch Files For Changes
 gulp.task('watch', ['dist'], function() {
