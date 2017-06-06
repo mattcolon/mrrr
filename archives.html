@@ -17,7 +17,7 @@
                     "date-node{{ isLastDate ? ' date-last' : '' }}
                         {{ isLastMonth ? ' month-last' : '' }}
                         {{ isLastYear ? ' year-last' : '' }}">
-                    <a href="#!/comics/{{ date.id }}">{{ date.date }}: <span class="title">{{ date.title }}</span></a>
+                    {{ date.date }}: <a href="#!/comics/{{ date.id }}">{{ date.title }}</a>
                 </div>
             </div>
         </div>

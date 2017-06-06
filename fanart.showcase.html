@@ -1,0 +1,12 @@
+<!-- Mrrr Web Comic Application - Matthew Colón -->
+<div class="fanart-showcase-content">
+    <img ng-src="/images/fanart/{{ fanart.image }}">
+    <div class="information">
+        <div class="title">{{ fanart.title }}</div>
+        <div>{{ fanart.artist }} - 
+            <!-- Show a link if the webcomic has a URL; otherwise, just display the title -->
+            <a ng-if="!!fanart.webcomic.url" target="_blank" href="{{ fanart.webcomic.url }}">{{ fanart.webcomic.title }}</a>
+            <span ng-if="!fanart.webcomic.url">{{ fanart.webcomic.title }}</span>
+        </div>
+    </div>
+</div>

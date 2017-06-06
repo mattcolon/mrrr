@@ -4,7 +4,7 @@
         <h1>{{ comic.title }}</h1>
     </div>
     <div class="comic">
-        <img src="/images/comics/{{ comic.image }}" />
+        <img ng-src="/images/comics/{{ comic.image }}" />
     </div>
     <div class="navigation">
         <span class="control{{ comicID === 1 ? ' hidden' : '' }}">

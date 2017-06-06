@@ -14,13 +14,21 @@
             .when("/", {
                 templateUrl: "/home.html"
             })
-            .when("/archives", {
+            .when("/comics", {
                 controller: "ComicsController",
                 templateUrl: "/archives.html"
             })
             .when("/comics/:comicID", {
                 controller: "ComicsController",
                 templateUrl: "/comic.html"
+            })
+            .when("/fanart", {
+                controller: "FanartController",
+                templateUrl: "/fanart.html"
+            })
+            .when("/fanart/:fanartID", {
+                controller: "FanartController",
+                templateUrl: "/fanart.showcase.html"
             })
             .otherwise({
                 redirectTo: "/"
@@ -101,13 +109,16 @@
 
             // Updates the scope using the cached comics data and archives data
             function updateScope() {
-                var comicID = $routeParams.comicID;
+
+                $scope.archivesData = archivesData;
                 $scope.comics = comicsData;
+
+                // Add specific comic data if the route parameters contain an ID
+                var comicID = $routeParams.comicID;
                 if (!!comicID) {
                     $scope.comicID = parseInt(comicID);
                     $scope.comic = comicsData[$scope.comicID - 1];
                 }
-                $scope.archivesData = archivesData;
             }
 
             if (!comicsData) {
@@ -115,6 +126,36 @@
                 $http.get("/json/comics.json").then(function(response) {
                     comicsData = response.data;
                     archivesData = createArchivesData(comicsData);
+                    updateScope();
+                });
+            } else {
+                updateScope();
+            }
+        }]);
+    })();
+
+    (function() {
+
+        var fanartData;
+        angular.module('mrrrApp')
+            .controller('FanartController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+
+            function updateScope() {
+
+                $scope.introduction = fanartData.introduction;
+                $scope.fanartSubmissions = fanartData.fanartSubmissions;
+
+                // Add specific fanart data if the route parameters contain an ID
+                var fanartID = $routeParams.fanartID;
+                if (!!fanartID) {
+                    $scope.fanartID = parseInt(fanartID);
+                    $scope.fanart = fanartData.fanartSubmissions[$scope.fanartID - 1];
+                }
+            }
+
+            if (!fanartData) {
+                $http.get("/json/fanart.json").then(function(response) {
+                    fanartData = response.data;
                     updateScope();
                 });
             } else {

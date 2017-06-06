@@ -1,0 +1,59 @@
+/*
+ * Mrrr Web Comic Application
+ * @author Matthew Colón
+ */ 
+
+@import "common.scss";
+
+$fanart-content-padding: 15px;
+
+.fanart-content {
+
+    font-family: $default-font-family;
+    font-size: $default-font-size;
+    width: 400px;
+    /* Use "100vh" instead of "100%" since Firefox doesn't honor "100%" in calc */
+    max-height: calc(100vh - (#{$bar-height} * 2) - (#{$desktop-padding} * 2) - #{$window-border-dimension} - (#{$fanart-content-padding} * 2));
+    height: auto;
+    overflow-y: auto;
+    padding: $fanart-content-padding;
+    
+    .submission {
+
+        padding-top: 15px;
+        display: flex;
+        align-items: center;
+
+        .information {
+
+            width: 100%;
+            text-align: center;
+
+            .title {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.fanart-showcase-content {
+
+    font-family: $default-font-family;
+    font-size: $default-font-size;
+    /* Use "100vh" instead of "100%" since Firefox doesn't honor "100%" in calc */
+    max-height: calc(100vh - (#{$bar-height} * 2) - (#{$desktop-padding} * 2) - #{$window-border-dimension} - (#{$fanart-content-padding} * 2));
+    height: auto;
+    overflow-y: auto;
+    padding: $fanart-content-padding;
+
+    .information {
+
+        width: 100%;
+        text-align: center;
+        padding-top: 15px;
+
+        .title {
+            font-weight: bold;
+        }
+    }
+}

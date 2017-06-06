@@ -1,0 +1,15 @@
+<!-- Mrrr Web Comic Application - Matthew Colón -->
+<div class="fanart-content">
+    <div class="introduction">{{ introduction }}</div>
+    <div class="submission" ng-repeat="fanart in fanartSubmissions">
+        <a href="/#!/fanart/{{ $index + 1 }}"><img ng-src="/images/fanart/{{ fanart.thumbnail }}"></a>
+        <div class="information">
+            <div class="title"><a href="/#!/fanart/{{ $index + 1 }}">{{ fanart.title }}</a></div>
+            <div>{{ fanart.artist }} - 
+                <!-- Show a link if the webcomic has a URL; otherwise, just display the title -->
+                <a ng-if="!!fanart.webcomic.url" target="_blank" href="{{ fanart.webcomic.url }}">{{ fanart.webcomic.title }}</a>
+                <span ng-if="!fanart.webcomic.url">{{ fanart.webcomic.title }}</span>
+            </div>
+        </div>
+    </div>
+</div>

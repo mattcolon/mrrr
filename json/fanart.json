@@ -1,0 +1,40 @@
+{
+    "introduction": "I want to thank everyone who sent in fan art.  It really means a lot to get a complement in this form, so thank you!",
+
+    "fanartSubmissions": [
+        {
+            "title": "Super Matt and PantsMan (VGCats)",
+            "thumbnail": "supermatt_thumbnail.jpg",
+            "image": "supermatt.jpg",
+            "artist": "Sean Lasocki",
+            "webcomic": {
+                "title": "VGAddicts",
+                "url": "http://vgaddicts.keenspace.com/"
+            }
+        }, {
+            "title": "Mrrr's Chris",
+            "thumbnail": "mrrrschris_thumbnail.jpg",
+            "image": "mrrrschris.gif",
+            "artist": "Adam Garciarz",
+            "webcomic": {
+                "title": "Duffy8 Domain"
+            }
+        }, {
+            "title": "Bungrave",
+            "thumbnail": "bungrave_thumbnail.jpg",
+            "image": "bungrave.jpg",
+            "artist": "RJ Hillis",
+            "webcomic": {
+                "title": "Some Creation Required"
+            }
+        }, {
+            "title": "Mrrr's Matt",
+            "thumbnail": "fanartformattatmrrrs_thumbnail.jpg",
+            "image": "fanartformattatmrrr.gif",
+            "artist": "Adam Garciarz",
+            "webcomic": {
+                "title": "Duffy8 Domain"
+            }
+        }
+    ]
+}

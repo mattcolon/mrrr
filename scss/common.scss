@@ -8,3 +8,18 @@ $default-font-size: 13px;
 $desktop-padding: 15px;
 $window-border-dimension: 4px;
 $bar-height: 34px;
+
+a {
+    color: #FF9900;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #666666;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #666666;
+    text-decoration: underline;
+}
