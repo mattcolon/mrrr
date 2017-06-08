@@ -1,0 +1,40 @@
+/*
+ * Mrrr Web Comic Application
+ * @author Matthew Colón
+ */ 
+
+@import "common.scss";
+
+$about-content-padding: 15px;
+
+.about-content {
+
+    background-color: #666666;
+    color: white;
+    font-family: $default-font-family;
+    font-size: $default-font-size;
+    max-height: calc(100vh - (#{$bar-height} * 2) - (#{$desktop-padding} * 2) - #{$window-border-dimension} - (#{$about-content-padding} * 2));
+    height: auto;
+    overflow-y: auto;
+    padding: $about-content-padding;
+
+    ul {
+        list-style-type: disc;
+    }
+
+    .word {
+        font-weight: bold;
+    }
+
+    .part-of-speech {
+        font-style: italic;
+    }
+
+    .example {
+        font-style: italic;
+    }
+
+    .source {
+        font-size: 11px;
+    }
+}

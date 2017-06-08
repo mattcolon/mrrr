@@ -30,6 +30,9 @@
                 controller: "FanartController",
                 templateUrl: "/fanart.showcase.html"
             })
+            .when("/about", {
+                templateUrl: "/about.html"
+            })
             .otherwise({
                 redirectTo: "/"
             });
