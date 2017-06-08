@@ -1,0 +1,55 @@
+/*
+ * Mrrr Web Comic Application
+ * @author Matthew Colón
+ */ 
+
+@import "common.scss";
+
+$cast-content-padding: 15px;
+
+.cast-content {
+
+    font-family: $default-font-family;
+    font-size: $default-font-size;
+    width: 520px;
+    max-height: calc(100vh - (#{$bar-height} * 2) - (#{$desktop-padding} * 2) - #{$window-border-dimension} - (#{$cast-content-padding} * 2));
+    height: auto;
+    overflow-y: auto;
+    padding: $cast-content-padding;
+
+    .matt-chris-names {
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    img.mattchris {
+        display: block;
+        margin: auto;
+        padding-bottom: 15px;
+    }
+
+    .name {
+
+        padding-top: 15px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .block {
+
+        display: flex;
+        align-content: center;
+
+        .profile {
+            padding-right: 15px;
+        }
+    }
+
+    .cameos-label {
+        padding-top: 45px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}

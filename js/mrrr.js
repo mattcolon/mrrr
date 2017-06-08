@@ -14,6 +14,9 @@
             .when("/", {
                 templateUrl: "/home.html"
             })
+            .when("/cast", {
+                templateUrl: "/cast.html"
+            })
             .when("/comics", {
                 controller: "ComicsController",
                 templateUrl: "/archives.html"
