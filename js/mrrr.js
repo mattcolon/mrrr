@@ -36,6 +36,10 @@
             .when("/about", {
                 templateUrl: "/about.html"
             })
+            .when("/closed", {
+                controller: "ClosedWindowController",
+                templateUrl: "/closed.html"
+            })
             .otherwise({
                 redirectTo: "/"
             });
@@ -143,8 +147,7 @@
     (function() {
 
         var fanartData;
-        angular.module('mrrrApp')
-            .controller('FanartController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+        app.controller('FanartController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
 
             function updateScope() {
 
@@ -167,6 +170,16 @@
             } else {
                 updateScope();
             }
+        }]);
+    })();
+
+    (function() {
+
+        app.controller('ClosedWindowController', ['$scope', function($scope) {
+            $('.window').addClass('closed');
+            $scope.$on('$locationChangeStart', function() {
+                $('.window').removeClass('closed');
+            });
         }]);
     })();
 })();

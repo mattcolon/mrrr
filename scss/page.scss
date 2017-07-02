@@ -39,6 +39,10 @@ body {
 
         display: inline-block;
 
+        &.closed {
+            display: none;
+        }
+
         .bar {
 
             font-size: 0;
